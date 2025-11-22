@@ -3,12 +3,13 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
 import { defineConfig } from "eslint/config";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
     plugins: { js },
-    extends: ["js/recommended", "prettier"],
+    extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
   },
   tseslint.configs.recommended,
@@ -21,4 +22,5 @@ export default defineConfig([
       },
     },
   },
+  eslintConfigPrettier,
 ]);
