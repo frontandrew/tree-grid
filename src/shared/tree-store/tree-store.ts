@@ -61,12 +61,16 @@ export class TreeStore {
   }
 
   getAllParents(id: TreeItem["id"]) {
+    const target = this.getItem(id);
     const result: TreeItem[] = [];
-    let current = this.getItem(id);
 
-    while (current) {
-      result.push(current);
-      current = current.parent ? this.getItem(current.parent) : undefined;
+    if (target && target.parent) {
+      let current = this.getItem(target.parent);
+
+      while (current) {
+        result.push(current);
+        current = current.parent ? this.getItem(current.parent) : undefined;
+      }
     }
 
     return result;
