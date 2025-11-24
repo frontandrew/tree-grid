@@ -16,14 +16,80 @@ const likeTreeItem = { id: 4, parent: "1234ew", label: "Item 4" };
 const store = new TreeStore(tree);
 
 describe("The instance of TreeStore", () => {
-  //getAll
+  // tests: addItem()
+  describe("on call 'addItem()' method", () => {
+    describe("with item witch 'id' is same as existent item", () => {
+      const result = store.addItem(likeTreeItem);
+      const expected = false;
+      test("should not add new item in tree", () => {
+        expect(store.getAll().includes(likeTreeItem)).is.equal(expected);
+      });
+      test("should return 'false'", () => {
+        expect(result).is.equal(expected);
+      });
+    });
+
+    describe("with item witch 'id' is not same as existent items", () => {
+      const result = store.addItem(nonTreeItem);
+      test("should return 'true'", () => {
+        const expected = true;
+
+        expect(result).is.equal(expected);
+      });
+      test("should add new item in tree", () => {
+        const expected = true;
+
+        expect(store.getAll().includes(nonTreeItem)).is.equal(expected);
+      });
+      test("should add new child to parent tree item", () => {
+        const result = store
+          .getAllChildren(nonTreeItem.parent)
+          .includes(nonTreeItem);
+        const expected = true;
+
+        expect(result).is.equal(expected);
+      });
+    });
+  });
+
+  // tests: removeItem
+  describe("on call removeItem() method", () => {
+    describe("with param 'id' wich is same as existent items", () => {
+      test("should return 'true'", () => {
+        expect(store.removeItem(nonTreeItem.id)).is.equal(true);
+      });
+      test("should remove target tree item", () => {
+        expect(store.getAll()).is.deep.equal(tree);
+      });
+      test("should remove target item from parent children items list", () => {
+        const result = store
+          .getAllChildren(nonTreeItem.parent)
+          .includes(nonTreeItem);
+        const expected = false;
+
+        expect(result).is.deep.equal(expected);
+      });
+    });
+    describe("with param 'id' wich is not same as existent items", () => {
+      test("should return 'false'", () => {
+        const expected = false;
+
+        expect(store.removeItem(nonTreeItem.id)).is.equal(expected);
+      });
+      test("should not mutate items tree", () => {
+        expect(store.getAll()).is.deep.equal(tree);
+      });
+    });
+  });
+
+  // tests: getAll
   describe("on call getAll() method", () => {
     test("should return original tree array", () => {
       expect(store.getAll()).is.deep.equal(tree);
     });
   });
 
-  //getItem
+  // tests: getItem
   describe("on call getItem() method", () => {
     describe("with a non-existent param 'id'", () => {
       test("should return 'undefined'", () => {
@@ -48,7 +114,7 @@ describe("The instance of TreeStore", () => {
     });
   });
 
-  // getChildren
+  // tests: getChildren
   describe("on call getChildren() method", () => {
     describe("with a non-existent param 'id'", () => {
       test("should return empty array", () => {
@@ -76,7 +142,7 @@ describe("The instance of TreeStore", () => {
     });
   });
 
-  // getAllChildren
+  // tests: getAllChildren
   describe("on call getAllChildren() method", () => {
     describe("with a non-existent param 'id'", () => {
       test("should return empty array", () => {
@@ -114,7 +180,7 @@ describe("The instance of TreeStore", () => {
     });
   });
 
-  // getAllParents
+  // tests: getAllParents
   describe("on call getAllParents() method", () => {
     describe("with a non-existent param 'id'", () => {
       test("should return empty array", () => {
@@ -140,31 +206,6 @@ describe("The instance of TreeStore", () => {
 
           expect(parents).is.deep.equal(expected);
         });
-      });
-    });
-  });
-
-  //addItem
-  describe("on call addItem() method", () => {
-    describe("with item witch 'id' is same as existent item", () => {
-      const result = store.addItem(likeTreeItem);
-      const expected = false;
-      test("should not add new item in tree", () => {
-        expect(store.getAll().includes(likeTreeItem)).is.equal(expected);
-      });
-      test("should return 'false'", () => {
-        expect(result).is.equal(expected);
-      });
-    });
-
-    describe.skip("with item witch 'id' is not same as existent items", () => {
-      const result = store.addItem(nonTreeItem);
-      const expected = true;
-      test("should add new item in tree", () => {
-        expect(store.getAll().includes(nonTreeItem)).is.equal(expected);
-      });
-      test("should return 'true'", () => {
-        expect(result).is.equal(expected);
       });
     });
   });
