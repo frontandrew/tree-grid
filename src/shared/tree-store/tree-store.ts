@@ -6,16 +6,6 @@ export class TreeStore {
 
   constructor(items: TreeItem[]) {
     for (const item of items) {
-      //   this.items.set(item.id, item);
-
-      //   if (item.parent) {
-      //     if (!this.children.has(item.parent)) {
-      //       this.children.set(item.parent, []);
-      //     }
-
-      //     this.children.get(item.parent)!.push(item);
-      //   }
-
       this.registerItem(item);
       this.registerCildren(item);
     }
@@ -77,47 +67,13 @@ export class TreeStore {
   }
 
   addItem(item: TreeItem) {
-    // if (this.items.has(item.id)) {
-    //   throw new Error(`Item with id ${item.id} already exists`);
-    // }
-
     if (this.items.has(item.id)) return false;
 
     this.registerItem(item);
     this.registerCildren(item);
 
     return true;
-
-    //     this.items.set(item.id, item);
-
-    //     if (item.parent) {
-    //       if (!this.children.has(item.parent)) {
-    //         this.children.set(item.parent, []);
-    //       }
-
-    //       this.children.get(item.parent)!.push(item);
-    //     }
   }
-
-  //   removeItem(id: TreeItem["id"]) {
-  //     const toRemoveIds = [id, ...this.getAllChildren(id).map((item) => item.id)];
-
-  //     for (const toRemoveId of toRemoveIds) {
-  //       const item = this.items.get(toRemoveId);
-  //       if (!item) continue;
-
-  //       const children = this.children.get(item.parent);
-  //       if (children) {
-  //         this.children.set(
-  //           item.parent,
-  //           children.filter((c) => c.id !== toRemoveId),
-  //         );
-  //       }
-
-  //       this.children.delete(toRemoveId);
-  //       this.items.delete(toRemoveId);
-  //     }
-  //   }
 
   removeItem(id: TreeItem["id"]) {
     const toRemoveItem = this.items.get(id);
