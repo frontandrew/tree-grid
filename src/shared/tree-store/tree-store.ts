@@ -1,4 +1,4 @@
-import type { TreeItem } from "../types";
+import type { TreeItem } from "@shared/types";
 
 /**
  * TreeStore manages a collection of TreeItem nodes and their parent/child relationships.
