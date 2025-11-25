@@ -1,7 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { AppLayout } from "@shared/ui";
+</script>
 
 <template>
-  <h1>Tree Grid</h1>
+  <app-layout>
+    <template #header>
+      <h1>Tree Grid</h1>
+    </template>
+  </app-layout>
 </template>
 
-<style scoped></style>
+<style>
+#app {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  place-content: center;
+
+  overflow-x: hidden;
+}
+</style>
