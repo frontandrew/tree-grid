@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { TreeGrid } from "@features/tree-grid";
 import { AppLayout } from "@shared/ui";
+import { data } from "./data";
+import { ref } from "vue";
+
+const tree = ref(data);
 </script>
 
 <template>
@@ -7,6 +12,7 @@ import { AppLayout } from "@shared/ui";
     <template #header>
       <h1>Tree Grid</h1>
     </template>
+    <tree-grid v-model="tree" />
   </app-layout>
 </template>
 

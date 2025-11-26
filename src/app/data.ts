@@ -1,0 +1,11 @@
+export const data = [
+  { id: 1, parent: null, label: "Item 1" },
+  { id: "1234ew", parent: 1, label: "Item 2" },
+  { id: 3, parent: 1, label: "Item 3" },
+  { id: 4, parent: "1234ew", label: "Item 4" },
+  { id: 5, parent: "1234ew", label: "Item 5" },
+  { id: 6, parent: "1234ew", label: "Item 6" },
+  { id: 7, parent: 4, label: "Item 7" },
+  { id: "8", parent: 4, label: "Item 8" },
+  { id: "a", parent: null, label: "Item 9" },
+];
