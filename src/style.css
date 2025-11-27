@@ -1,5 +1,3 @@
-@import "./shared/theme/theme-style.css";
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,17 +11,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: var(--accent-color);
-  text-decoration: inherit;
-}
-a:hover {
-  color: hsl(
-    from var(--accent-color) calc(h * 0.8) calc(s * 0.8) calc(l * 0.8)
-  );
 }
 
 body {

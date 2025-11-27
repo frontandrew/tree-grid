@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { TreeGrid } from "@features/tree-grid";
 import { ThemeToggler } from "@features/theme-toggler";
 import { AppLayout } from "@shared/ui";
+import "@shared/theme/theme-style.css";
 
 import { data } from "./data";
 
