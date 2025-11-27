@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { TreeStore } from "@shared/tree-store";
+import type { TreeItem } from "@shared/types";
 
 import { AgGridVue } from "ag-grid-vue3";
 import type { ColDef, GetDataPath } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { RowNumbersModule, TreeDataModule } from "ag-grid-enterprise";
 
-import type { TreeItem } from "@shared/types";
 import type { RowDataItem } from "./types";
+import { theme } from "./theme";
 
 ModuleRegistry.registerModules([
   AllCommunityModule,
@@ -35,7 +36,6 @@ const rowData = computed<RowDataItem[]>(() =>
       ...item,
       category,
       path: path.reverse(),
-      //   order: index + 1,
     };
   }),
 );
@@ -43,15 +43,6 @@ const rowData = computed<RowDataItem[]>(() =>
 const getDataPath: GetDataPath = (data) => data.path;
 
 const columnDefs: ColDef<RowDataItem>[] = [
-  //   {
-  //     headerName: "Order",
-  //     field: "order",
-  //     width: 30,
-  //     cellStyle: {
-  //       fontWeight: "bold",
-  //     },
-  //     sort: "asc"
-  //   },
   {
     headerName: "Name",
     field: "label",
@@ -83,9 +74,19 @@ const autoGroupColumnDef: ColDef<RowDataItem> = {
     :get-data-path="getDataPath"
     :row-data="rowData"
     :row-numbers="true"
+    :suppress-cell-focus="true"
     :tree-data="true"
-    style="height: 100%"
+    :theme="theme"
+    style="height: 100%; width: 100%"
+    class="tree-grid"
   />
 </template>
 
-<style scoped></style>
+<style>
+.tree-grid {
+  .ag-header-cell-resize::after {
+    top: 0;
+    height: 100%;
+  }
+}
+</style>
