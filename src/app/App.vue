@@ -65,7 +65,7 @@ const header = `<TreeGrid />`;
   }
 
   a:hover {
-    filter: drop-shadow(0 0 0.2rem var(--accent-color));
+    filter: drop-shadow(0 0 0.4rem var(--accent-color));
   }
 
   svg {

@@ -32,6 +32,7 @@ import { toggleTheme } from "@shared/theme";
 
   width: 2rem;
   height: 2rem;
+  cursor: pointer;
 
   font-family: inherit;
   margin: 0;
