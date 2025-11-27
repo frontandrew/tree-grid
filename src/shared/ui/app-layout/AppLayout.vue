@@ -2,13 +2,13 @@
 
 <template>
   <div class="app-layout">
-    <header class="header">
+    <header v-show="$slots.header" class="header">
       <slot name="header"></slot>
     </header>
     <main class="main">
       <slot></slot>
     </main>
-    <footer class="footer">
+    <footer v-show="$slots.footer" class="footer">
       <slot name="footer"></slot>
     </footer>
   </div>
@@ -28,6 +28,7 @@
 
 .header {
   width: 100%;
+  padding: 1rem 0;
 }
 
 .main {
@@ -37,5 +38,6 @@
 
 .footer {
   width: 100%;
+  padding: 1rem;
 }
 </style>
