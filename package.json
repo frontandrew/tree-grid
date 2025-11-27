@@ -1,7 +1,12 @@
 {
   "name": "tree-grid",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
+  "author": {
+    "name": "Andrew Bubnov",
+    "email": "jackblack.nt@gmail.com",
+    "url": "https://t.me/frontandrew"
+  },
   "type": "module",
   "scripts": {
     "setup": "npm ci && husky",
